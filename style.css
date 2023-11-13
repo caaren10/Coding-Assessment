@@ -1,0 +1,102 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    align-items: center;
+    border: 1px solid black;
+    height:20px;
+}
+
+.startQuiz{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    align-items: center;
+}
+
+h1{
+    margin: 0px;
+}
+
+h4{
+    margin: 10px;
+}
+
+p{
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+#one{
+    display:flex;
+    flex-direction: column;
+    border: 1px solid black;
+}
+
+#two{
+    display:flex;
+    flex-direction: column;
+    border: 1px solid black;
+}
+
+#three{
+    display:flex;
+    flex-direction: column;
+    border: 1px solid black;
+}
+
+#four{
+    display:flex;
+    flex-direction: column;
+    border: 1px solid black;
+}
+
+#five{
+    display:flex;
+    flex-direction: column;
+    border: 1px solid black;
+}
+
+#six{
+    display:flex;
+    flex-direction: column;
+    border: 1px solid black;
+}
+
+#seven{
+    display:flex;
+    flex-direction: column;
+    border: 1px solid black;
+}
+
+#eight{
+    display:flex;
+    flex-direction: column;
+    border: 1px solid black;
+}
+
+#nine{
+    display:flex;
+    flex-direction: column;
+    border: 1px solid black;
+}
+
+#ten{
+    display:flex;
+    flex-direction: column;
+    border: 1px solid black;
+}
+
+#allDone{
+    display:flex;
+    flex-direction: column;
+    border: 1px solid black;  
+}
+
+#highScoresPage{
+    display:flex;
+    flex-direction: column;
+    border: 1px solid black;
+}
