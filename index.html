@@ -8,9 +8,19 @@
         <title>Technical Interview - Coding Assessment</title>
     </head>
     <body>
-        <header>
+        <div id="quiz-container">
+            <h1> Coding Quiz Challenge</h1>
+            <button id="startButton"> Start Quiz</button>
+            <div id="questions-container"></div>
+            <div id="options-container"></div>
+            <button id="next-button">Next</button>
+            <div id="results-container"></div>
+            <div id="timer"> Time: <span id="time">60</span>seconds</div>
+        </div>
+        
+        <!-- <header>
             <button id="highScores">View high scores</button>
-            <h4 id="time"> Time: 0<span id="timeLeft"></span></h4>
+            <h4 id="time"> Time:<span id="timeLeft">0</span></h4>
         </header>
 
         <div id="startQuiz" class="startQuiz">
@@ -97,9 +107,9 @@
             <h4><button class = "incorrectButton" class="B">B</button> To facilitate communication between frontend and backend</h4>
             <h4><button class = "correctButton" class="C">C</button> To package and distribute applications along with their dependencies</h4>
             <h4><button class = "incorrectButton" class="D">D</button> To automate browser testing</h4>   
-        </div>
-
-        <div id="allDone">
+        </div> -->
+<!-- 
+       <div id="allDone">
             <h2> Assessment Complete!</h2>
             <h4>Your final score is <span id="score"></span></h4>
             <label for="initials"> Enter Initials: </label> <input type="initials" name = "Initials" id="initials" placeholder="initials" />
@@ -108,7 +118,7 @@
         <div id="highScoresPage">
             <h2> High Scores</h2>
 
-        </div>
+        </div> -->
 
         <script src ="script.js"></script>
     </body>
