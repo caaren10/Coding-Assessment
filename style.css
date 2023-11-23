@@ -1,102 +1,36 @@
-header {
-    display: flex;
-    justify-content: space-between;
-    padding: 5px;
-    align-items: center;
-    border: 1px solid black;
-    height:20px;
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
 }
 
-.startQuiz{
-    display: flex;
-    flex-direction: column;
-    border: 1px solid black;
-    align-items: center;
+#quiz-container {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)
 }
 
 h1{
-    margin: 0px;
+    color: #333
 }
 
-h4{
+button {
+    padding: 10px 20 px;
     margin: 10px;
+    font-size: 16 px;
+    cursor: pointer;
 }
 
-p{
-    text-align: center;
+#timer {
+    margin-top: 20px;
+    font-size: 18px;
 }
 
-h2 {
-    text-align: center;
-}
-#one{
-    display:flex;
-    flex-direction: column;
-    border: 1px solid black;
-}
-
-#two{
-    display:flex;
-    flex-direction: column;
-    border: 1px solid black;
-}
-
-#three{
-    display:flex;
-    flex-direction: column;
-    border: 1px solid black;
-}
-
-#four{
-    display:flex;
-    flex-direction: column;
-    border: 1px solid black;
-}
-
-#five{
-    display:flex;
-    flex-direction: column;
-    border: 1px solid black;
-}
-
-#six{
-    display:flex;
-    flex-direction: column;
-    border: 1px solid black;
-}
-
-#seven{
-    display:flex;
-    flex-direction: column;
-    border: 1px solid black;
-}
-
-#eight{
-    display:flex;
-    flex-direction: column;
-    border: 1px solid black;
-}
-
-#nine{
-    display:flex;
-    flex-direction: column;
-    border: 1px solid black;
-}
-
-#ten{
-    display:flex;
-    flex-direction: column;
-    border: 1px solid black;
-}
-
-#allDone{
-    display:flex;
-    flex-direction: column;
-    border: 1px solid black;  
-}
-
-#highScoresPage{
-    display:flex;
-    flex-direction: column;
-    border: 1px solid black;
+#result-container{
+    margin-top: 20px;
+    font-size: 18px;
+    color: red;
 }
