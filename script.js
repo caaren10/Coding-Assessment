@@ -125,7 +125,6 @@ document.addEventListener("DOMContentLoaded", function () {
         nextElm.style.display = "none";
         resultsCont.textContent = `Game Over! Your score is ${score}.`;
 
-        // Add input for initials and button to save score
         initialsInput.setAttribute("placeholder", "Enter your initials");
         initialsInput.setAttribute("id", "initialsInput");
         saveButton.textContent = "Save Score";
@@ -134,4 +133,13 @@ document.addEventListener("DOMContentLoaded", function () {
         resultsCont.appendChild(initialsInput);
         resultsCont.appendChild(saveButton);
     }
+
+    function saveScore() {
+        
+        var initials = document.querySelector("#initialsInput").value;
+    
+        resultsCont.textContent = `Score saved for ${initials}.`;
+    }
+
+    startElm.addEventListener('click', startQuiz);
 });
