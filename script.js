@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var timer = document.querySelector("#time");
     var initialsInput = document.createElement("input");
     var saveButton = document.createElement("button");
+    var highScoresButton = document.querySelector("#highScoresButton");
 
     let currentQuestionIndex = 0;
     let score = 0;
@@ -123,6 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function endQuiz() {
         nextElm.style.display = "none";
+        highScoresButton.style.display = "block";
         resultsCont.textContent = `Game Over! Your score is ${score}.`;
 
         initialsInput.setAttribute("placeholder", "Enter your initials");
@@ -141,5 +143,21 @@ document.addEventListener("DOMContentLoaded", function () {
         resultsCont.textContent = `Score saved for ${initials}.`;
     }
 
+    function viewHighScores() {
+        var highScores = localStorage.getItem("highScore");
+        if (highScores) {
+            highScores = JSON.parse(highScores);
+            resultsCont.innerHTML = "<h2>High Scores</h2>";
+            highScores.forEach((hs) => {
+                var scoreItem = document.createElement("div");
+                scoreItem.textContent = `${hs.initials}: ${hs.score}`;
+                resultsCont.appendChild(scoreItem);
+            });
+        } else {
+            resultsCont.textContent = "No high scores available.";
+        }
+    }
+
     startElm.addEventListener('click', startQuiz);
+    highScoresButton.addEventListener('click', viewHighScores);
 });
