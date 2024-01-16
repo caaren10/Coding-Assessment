@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentQuestionIndex = 0;
     let score = 0;
     let timeRemaining = 60;
+    let allQuestionsDisplayed = false;
 
 
     const questions = [
@@ -27,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         {
             question: "In the context of frontend development, what does the term 'DOM' stand for?",
-            choices: ["Document Objext Model", "Data Object Model", "Document Oriented Model", "Design Object Model"],
+            choices: ["Document Object Model", "Data Object Model", "Document Oriented Model", "Design Object Model"],
             correctAnswer: "Document Object Model",
         },
         {
@@ -61,26 +62,24 @@ document.addEventListener("DOMContentLoaded", function () {
             correctAnswer: "let is block-scoped, const is used for constants, and var is function-scoped",
         },
         {
-            question: "What is the difference between let, const, and var in JavaScript for declaring variables?",
-            choices: ["They are interchangeable and can be used in any context", "let is block-scoped, const is used for constants, and var is function-scoped", "var is block-scoped, let is function-scoped, and const is globally scoped", "const is block-scoped, let is globally scoped, and var is function-scoped"],
-            correctAnswer: "let is block-scoped, const is used for constants, and var is function-scoped",
-        },
-        {
             question: "Explain the concept of event delegation JavaScript.",
             choices: ["It refers to the process of handling events using inline event handlers", "It involves assigning multiple events to a single element.", "It is a technique where a single event listener is used to manage all the events for a group of child elements.", "It is the practice of delaying the execution of certain events."],
             correctAnswer: "It is a technique where a single event listener is used to manage all the events for a group of child elements.",
         }
-    ]
+    ];
 
     function startQuiz() {
         startElm.style.display = "none";
         nextElm.style.display = "block";
+        highScoresButton.style.display = "none";
         showQuestion(currentQuestionIndex);
         startTimer();
     }
 
     function showQuestion(index) {
+        if (!allQuestionsDisplayed) {
         var currentQuestion = questions[index];
+        questionsCont.innerHTML = ""; // Clear the content of questionsCont
         questionsCont.textContent = currentQuestion.question;
         optionsCont.innerHTML = "";
         currentQuestion.choices.forEach((option) => {
@@ -91,7 +90,12 @@ document.addEventListener("DOMContentLoaded", function () {
             });
             optionsCont.appendChild(button);
         });
+
+        if (index === questions.length - 1) {
+            allQuestionsDisplayed = true; 
+        }
     }
+}
 
     function checkAnswer(selectedOption, correctAnswer) {
         if (selectedOption === correctAnswer) {
@@ -124,35 +128,51 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function endQuiz() {
         nextElm.style.display = "none";
-        highScoresButton.style.display = "block";
-        resultsCont.textContent = `Game Over! Your score is ${score}.`;
-
-        initialsInput.setAttribute("placeholder", "Enter your initials");
-        initialsInput.setAttribute("id", "initialsInput");
-        saveButton.textContent = "Save Score";
-        saveButton.addEventListener("click", saveScore);
-
-        resultsCont.appendChild(initialsInput);
-        resultsCont.appendChild(saveButton);
+    
+        if (currentQuestionIndex === questions.length) {
+            highScoresButton.style.display = "block";
+            resultsCont.innerHTML = `Game Over! Your score is ${score}.`;
+            initialsInput.setAttribute("placeholder", "Enter your initials");
+            initialsInput.setAttribute("id", "initialsInput");
+            saveButton.textContent = "Save Score";
+            saveButton.addEventListener("click", saveScore);
+    
+            resultsCont.appendChild(initialsInput);
+            resultsCont.appendChild(saveButton);
+            
+            questionsCont.style.display = "";
+        } else {
+            highScoresButton.style.display = "none";
+            resultsCont.innerHTML = "";
     }
+}
 
     function saveScore() {
         
         var initials = document.querySelector("#initialsInput").value;
     
         resultsCont.textContent = `Score saved for ${initials}.`;
+        var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+        highScores.push({ initials: initials, score: score });
+        highScores.sort((a, b) => b.score - a.score);
+        localStorage.setItem("highScores", JSON.stringify(highScores));
+        resultsCont.textContent = `Score saved for ${initials}.`;
     }
 
     function viewHighScores() {
-        var highScores = localStorage.getItem("highScore");
-        if (highScores) {
-            highScores = JSON.parse(highScores);
+        var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+    
+        if (highScores.length > 0) {
+            highScores = highScores.slice(0, 10); 
             resultsCont.innerHTML = "<h2>High Scores</h2>";
-            highScores.forEach((hs) => {
+    
+            highScores.forEach((hs, index) => {
                 var scoreItem = document.createElement("div");
-                scoreItem.textContent = `${hs.initials}: ${hs.score}`;
+                scoreItem.textContent = `${index + 1}. ${hs.initials}: ${hs.score}`;
                 resultsCont.appendChild(scoreItem);
             });
+
+            questionsCont.innerHTML = "";
         } else {
             resultsCont.textContent = "No high scores available.";
         }
